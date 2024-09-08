@@ -1,5 +1,6 @@
 = Categories
 
+== Notes
 #include "notes.typ"
 
 == Mandatory Exercises

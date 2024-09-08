@@ -1,5 +1,6 @@
 = Abstract Structure
 
+== Notes
 #include "notes.typ"
 
 == Mandatory Exercises

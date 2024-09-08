@@ -1,3 +1,5 @@
+#import "lemmas.typ": *
+
 #let std-bibliography = bibliography
 
 #let setup(
@@ -17,28 +19,29 @@
   set text(font: ("Libertinus Serif", "Linux Libertine"), size: 11pt)
   // preamble
   
-  page(align(left + horizon, block(width: 90%)[
+  page([
+    #align(left + horizon, block(width: 90%)[
       #let v-space = v(2em, weak: true)
       #text(3em)[*#title*]
 
       #v-space
       #text(1.6em, subtitle)
-
-      #v-space
       #grid(
         columns: (auto, 1fr),
-        text(size: 1.4em)[#upper[*Aarhus University* #h(0.15cm)]],
+        text(size: 1.2em)[#upper[*Aarhus Universitet* #h(0.15cm)]],
         image("../resources/au_logo_black.png", width: 0.7cm)
       )
-      
+    ])
+    #align(left + bottom, block(width: 90%)[
       #text(1.4em)[#smallcaps[#author]]
+      #text(1.2em)[[#raw(authorid)]]
 
       #if date != none {
-        v-space
         // Display date as MMMM DD, YYYY
         text(date.display("[month repr:long] [day padding:zero], [year repr:full]"))
       }
-  ]))
+    ])
+  ])
   // cover page
 
   if preface != none {
@@ -57,8 +60,6 @@
   }
   // table of contents
 
-
-  set heading(numbering: "§1.1.1")
   set page(
     footer: context {
       // Get current page number.
@@ -88,13 +89,36 @@
       }
     }
   )
-
+  
   {
-    // Start chapters on a new page.
+    // Custom Heading Styling
+    set heading(numbering: "1.1.1")
     show heading.where(level: 1): it => {
       colbreak(weak: true)
-      it
+      [§#counter(heading).display() #it.body]
     }
+    // Custom Table Styling
+    set table(
+      fill: (x,y) => if y == 0 {
+        silver
+      },
+      stroke: (x,y) => if x == 0 and y == 1 {(
+        top: (thickness: 1pt, paint:silver),
+        right: (thickness: 1pt, paint:silver)
+      )} else if y == 1 {(
+        top: (thickness: 1pt, paint:silver)
+      )} else if x == 0 {(
+        right: (thickness: 1pt, paint:silver)
+      )} else if y > 1 {(
+        top: (thickness: 1pt, paint:silver)
+      )},
+      inset: 7pt,
+    )
+    show table.cell.where(y: 0): smallcaps
+    
+    // Setup lemmify
+    show: thm-rules
+
     body
   }
 
