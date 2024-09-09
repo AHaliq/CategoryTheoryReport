@@ -16,7 +16,7 @@ We show $Rel$ is a category by @defn-cat
 ))
 
 #proof(name: "associativity")[$
-(S comp R comp Q)
+(S comp R) comp Q
 &= {(b,d)|exists c. (b,c) in R and (c,d) in S} comp Q \
 &= {(a,d)|exists b. (a,b) in Q and (b,d) in {(b,c)|exists c. (b,c) in R and (c,d) in S}} \
 &= {(a,d)|exists b.(a,b) in Q and exists c.(b,c) in R and (c,d) in S} \
@@ -112,7 +112,13 @@ $]
 
 #proof(name: [isomorphisms in $Pos$ are not bijective homomorphisms])[
 
-_Remark_: I don't know how to proceed. Aren't the morphisms in $Pos$ monotone functions? Thus isomorphisms are precisely bijective homomorphisms? Contradicting the question statement? This is an algebraic issue more than a category theory one.
+Let $a_0,a_1 in A$ be a poset where $a_0 <= a_1$.
+
+Let $b_0,b_1 in B$ be a poset where there is no ordering between $b_0$ and $b_1$.
+
+Even though we can define a homomorphism / bijective function from $[a_i |-> b_i]$,
+
+there are no monotone functions / bijective homomorphisms $f$ such that $f(a_0) <= f(a_1)$
 ]
 
 #exercise("5")[For any category $bold(C)$, define a functor $U$...]
@@ -157,7 +163,7 @@ $
 $
 ]
 
-#exercise("6")[Construct the 'coslive category'...]
+#exercise("6")[Construct the 'coslice category'...]
 We define the co-slice category as before in @defn-constructions.
 
 #{
@@ -233,45 +239,75 @@ the functor $M$ holds @defn-functor as follows
   columns: 2,
   align: (right, left),
   [structure], [definition],
-  [domains], $M(f) = [a_0...a_k |-> f(a_0)...f(a_k)]$,
-  [identity], $M(1_A) = M(id) = id = 1_M(A)$,
-  [composition], $M(g_2 comp g_1) = M(g_2) comp M(g_1)$,
+  [domains], $M(f) = [x_0... |-> f(x_0)...]$,
+  [identity], $M(1_A) = M(id_Set) = id_Mon = 1_M(A)$,
+  [composition], $M(g comp f) = M(g) comp M(f)$,
 ))
-
-#proof(name: "composition")[$
+$
 M(g comp f)
-&= [a_0... |-> g(f(a_0))...] \
-&= [b_0... |-> g(b_0)...] comp [a_0... |-> f(a_0)...] \
+&= [x_0... |-> g(f(x_0))...] \
+&= [y_0... |-> g(y_0)...] comp [x_0... |-> f(x_0)...] \
 &= M(g) comp M(f)
-$]
+$
 ]
+
 
 #proof(name: "from UMP")[
+Let $"UMP" : (X -> |M(X)|) -> (X -> |M(Y)|) -> (M(X) -> M(Y))$, then
+$
+M(arr(f,X,Y)) = "UMP"(i_X,i_Y comp f) = overline(f)
+$
 #grid(columns: (1fr, 1fr), align: (center + horizon, center + horizon),
-proof(name: "domain")[
-$
-M(f)
-&= [a_0... |-> (|f| comp i)(a_0)...] \
-&= [a_0... |-> j(a_0)...]
-$
-],
-proof(name: "composition")[
+figure(diagram(cell-size: 10mm,$
+#node($M(X)$, name: <MX>)
+  edge("r",overline(f),"-->")
+  edge("rr", "-->", overline(g comp f), bend: #(30deg))
+  edge("d",stroke: sstroke,=>) &
+#node($M(Y)$, name: <MY>)
+  edge("r",overline(g),"-->")
+  edge("d",stroke: sstroke,=>) &
+#node($M(Z)$, name: <MZ>)
+  edge("d",stroke: sstroke,=>) \
+#node(
+align(bottom + right,text(silver)[$Mon$]),
+corner-radius: 5pt,
+stroke: silver,
+enclose: (<MX>, <MY>, <MZ>),
+)
+#node($|M(X)|$, name: <MBX>)
+  edge("r",|overline(f)|,->) &
+#node($|M(Y)|$, name: <MBY>)
+  edge("r",|overline(g)|,->) &
+#node($|M(Z)|$, name: <MBZ>) \
+#node($X$, name: <X>)
+  edge("u",i_X,"hook->")
+  edge("r",f,->)
+  edge("ru",
+  stroke: sstroke,
+  marks: ->
+  ) &
+#node($Y$, name: <Y>)
+  edge("u",i_Y,"hook->")
+  edge("r",g,->)
+  edge("ru",
+  stroke: sstroke,
+  marks: ->
+  ) &
+#node($Z$, name: <Z>)
+  edge("u",i_Z,"hook->")
+#node(
+align(bottom + right,text(silver)[$Set$]),
+corner-radius: 5pt,
+stroke: silver,
+enclose: (<MBX>, <MBY>, <MBZ>, <X>, <Y>, <Z>),
+)
+$))
+,
 $
 M(g comp f)
-&= [a_0... |-> (|g comp f| comp i)(a_0)...] \
-&= [a_0... |-> (|g| comp |f| comp i)(a_0)...] \
-&= [a_0... |-> (|g| comp j)(a_0)...] \
-&= [a_0...|-> k(a_0)...]
+&= "UMP"(i_X,i_Z comp g comp f) \
+&= overline(g comp f) \
+"(by uniqueness)"&= overline(g) comp overline(f) \
+&= M(g) comp M(f)
 $
-]
-)
-#figure(diagram(cell-size: 10mm,$
-X edge("r",f,"-->") edge("d",,=>) &
-Y edge("r",g,"-->") edge("d",,=>) &
-Z edge("d",,=>) \
-|X| edge("r",|f|,->) &
-|Y| edge("r",|g|,->) &
-|Z| \ &
-A edge("lu",i,->) edge("u",j,->) edge("ur",k,->) &
-$))
-]
+)]

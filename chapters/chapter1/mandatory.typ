@@ -9,10 +9,14 @@ We show that $T=(T_0,T_1)$ is a functor by @defn-functor
 #figure(table(
   columns: 2,
   align: (right, left),
-  [structure], [definition],
-  [domains], $T_1(f)=[A |-> {f(x) | x in A }]$,
-  [identity], $T_1(1_A)= T_1(id) = id = 1_(T_0(A))$,
-  [composition], $T_1(g comp f) = T_1(g) comp T_1(f)$
+  [structure],
+  [definition],
+  [domains],
+  $T_1(f)=[A |-> {f(x) | x in A }]$,
+  [identity],
+  $T_1(1_A)= T_1(id) = id = 1_(T_0(A))$,
+  [composition],
+  $T_1(g comp f) = T_1(g) comp T_1(f)$
 ))
 #proof(name: "composition")[$
 T_1(g comp f)

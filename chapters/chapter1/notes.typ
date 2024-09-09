@@ -47,7 +47,7 @@ $
 @sa[definition 1.3]
 An isomorphism is a morphism that has an inverse. The objects on them are isomorphic.
 $
-"isIso"(f) &= exists! g. g comp f = 1_B and f comp g = 1_A \
+"isIso"(f) &= exists! g. g comp f = 1_A and f comp g = 1_B \
 A iso B &= exists arr(f,A,B). "isIso"(f)
 $
 ]<defn-isomorphism>
@@ -82,9 +82,29 @@ figure(table(
   [uniqueness], $|overline(f_a)| comp i &= f and \ |overline(f_b)| comp i &= f -> \ overline(f_a) &= overline(f_b)$,
 )),
 figure(diagram(cell-size: 10mm, $
-M(A) edge("d", , "=>") edge("r", overline(f), "-->") & N edge("d", , "=>") \
-|M(A)| edge("r", |overline(f)|, ->) & |N| \
-A edge("u", i, ->) edge("ur", f, ->)
+#node($M(A)$, name: <MA>)
+  edge("d", "=>", stroke: sstroke)
+  edge("r", overline(f), "-->") &
+#node($N$, name: <N>)
+  edge("d", "=>", stroke: sstroke) \
+#node($|M(A)|$, name: <MBA>)
+  edge("r", |overline(f)|, ->) &
+#node($|N|$, name: <BN>) \
+#node($A$, name: <A>)
+  edge("u", i, ->)
+  edge("ur", f, ->)
+#node(
+align(bottom + right,text(silver)[$Mon$]),
+corner-radius: 5pt,
+stroke: silver,
+enclose: (<MA>, <N>),
+)
+#node(
+align(bottom + right,text(silver)[$Set$]),
+corner-radius: 5pt,
+stroke: silver,
+enclose: (<MBA>, <BN>, <A>),
+)
 $))
 )
 - No Junk: all words are concatenations of $A$; implied by uniqueness

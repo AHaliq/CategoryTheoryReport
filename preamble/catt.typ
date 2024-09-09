@@ -11,3 +11,6 @@
 #let Mon = $upright(bold("Monoids"))$
 #let Pos = $upright(bold("Posets"))$
 #let dom = $upright(bold("dom"))$
+
+// diagram macros
+#let sstroke = 1pt + silver

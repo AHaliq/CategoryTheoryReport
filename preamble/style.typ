@@ -28,13 +28,22 @@
       #text(1.6em, subtitle)
       #grid(
         columns: (auto, 1fr),
-        text(size: 1.2em)[#upper[*Aarhus Universitet* #h(0.15cm)]],
+        align: (left + horizon, left + horizon),
+        text(
+          size: 1.2em,
+          font: ("AU Passata"),
+        )[#upper[*Aarhus Universitet* #h(0.3em)]],
         image("../resources/au_logo_black.png", width: 0.7cm)
       )
     ])
     #align(left + bottom, block(width: 90%)[
-      #text(1.4em)[#smallcaps[#author]]
-      #text(1.2em)[[#raw(authorid)]]
+      #grid(
+        columns: (auto, 1fr),
+        align: (left + horizon, left + horizon),
+        text(1.4em)[#author #h(0.5em)],
+        text(1.2em)[[#raw(authorid)]]
+      )
+      
 
       #if date != none {
         // Display date as MMMM DD, YYYY
