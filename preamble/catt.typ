@@ -1,6 +1,8 @@
 #let Ob(category) = $attach(br: category, upright(bold("Ob")))$
 #let Hom(category,s:none,t:none) = $attach(br: category, upright(bold("Hom")))#if s != none and t != none { $(#s,#t)$ }$
 #let arr(f,a,b) = $#f: #a -> #b$
+#let mono(f,a,b) = $#f: #a >-> #b$
+#let epi(f,a,b) = $#f: #a ->> #b$
 #let comp = $compose$
 #let iso = $tilde.equiv$
 #let op(category) = $attach(tr: "op", category)$
@@ -14,3 +16,11 @@
 
 // diagram macros
 #let sstroke = 1pt + silver
+#let corner-mark = (
+  inherit: "straight",
+  sharpness: 45deg,
+  stroke: black,
+  rev: false,
+  
+)
+#let corner(..a) = edge(..a, stroke: white, marks: (corner-mark,))

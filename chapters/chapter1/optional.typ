@@ -44,7 +44,7 @@ Let $G$ be a functor such that @defn-functor holds.
   align: (right, left),
   [structure], [definition],
   [domains], $G(f) = {(a,f(a))|a in A}$,
-  [identity], $G(1_A) = {(a,1_A(a))|a in A} = 1_G(A)$,
+  [identity], $G(1_A) = {(a,1_A (a))|a in A} = 1_G(A)$,
   [composition], $G(g comp f) = G(g) comp G(f)$,
 ))
 
