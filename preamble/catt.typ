@@ -13,6 +13,7 @@
 #let Mon = $upright(bold("Monoids"))$
 #let Pos = $upright(bold("Posets"))$
 #let dom = $upright(bold("dom"))$
+#let cod = $upright(bold("cod"))$
 
 // diagram macros
 #let sstroke = 1pt + silver

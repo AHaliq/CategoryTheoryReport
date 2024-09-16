@@ -5,15 +5,15 @@
 #definition(name: "Monomorphisms and Epimorphisms")[
 @sa[definition 2.1]
 
-_monomorphisms_ have unique pre-composites.
+_monomorphisms_ have unique pre-composites from the same object.
 $
 "isMono"(mono(f,A,B)) = f comp g = f comp h => g = h
 $
-_epimorphisms_ have unique post-composites.
+_epimorphisms_ have unique post-composites to the same object
 $
 "isEpi"(epi(f,A,B)) = g comp f = h comp f => g = h
 $
-]
+]<defn-epimono>
 
 #definition(name: "split mono and epi")[
 @sa[definition 2.7]
@@ -37,8 +37,7 @@ $
 ])
 - if $f$ is a right inverse of $g$ / $g$ is a left inverse of $f$, then $g comp f = 1$, then $f$ is a split mono of epic $g$
 - if isomorphic then $f,g$ are both split epi and mono of each other
-
-]
+]<defn-splitepimono>
 
 #theorem(name: "Interpretation of split epis (optional)")[
 @sa[example 2.8]
@@ -150,7 +149,7 @@ $)
 #definition(name: "Products as Hom-sets")[
 @sa[section 2.7]
 
-$Hom(C,s:X,t:-) : C -> Set$ is called the covariant representable functor of $X$, where
+$Hom(C,s:X,t:-) : C -> Set$ is called the covariant representable functor of $X$, where notationally:
 $
 Hom(C,s:X,t:g) = g_* = [f |-> g comp f]
 $
