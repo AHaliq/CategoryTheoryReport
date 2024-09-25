@@ -13,3 +13,4 @@
 
 #include "chapters/chapter1/index.typ"
 #include "chapters/chapter2/index.typ"
+#include "chapters/chapter3/index.typ"

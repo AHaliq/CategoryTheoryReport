@@ -309,4 +309,4 @@ $
 
 #exercise("18")[Show that the forgetful functor $arr(U, Mon,Set)$ from ...]
 
-_Remark_: what is representable? are we supposed to show $U(P) iso U(A) times U(B)$? im not sure
+A representable functor is one that 
