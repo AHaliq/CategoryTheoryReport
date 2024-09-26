@@ -309,4 +309,33 @@ $
 
 #exercise("18")[Show that the forgetful functor $arr(U, Mon,Set)$ from ...]
 
-A representable functor is one that 
+If $U$ is a forgetful functor then $U(N)$ is the underlying set of the monoid. The elements of the underlying set can be defined by the representable objects in the category of monoids i.e. morphisms from the terminal object.
+$
+Hom(Mon, s: 1, t: N) iso U(N)
+$
+Then, $U(f)$ is the underlying function of the monoid homomorphism $arr(f,N,M)$. We can construct the functions as follows.
+$
+{ Hom(Mon, s: 1, t: N) -> Hom(Mon, s: 1, t: M)} iso U(f)
+$
+In the category of monoids we know that:
+$
+p &= (pi_N comp p, pi_M comp p)
+$
+#figure(diagram(cell-size: 10mm, $
+N &
+N times M
+  edge("l", pi_N, ->)
+  edge("r", pi_M, ->) &
+M \
+& X
+  edge("lu", ->)
+  edge("ru", ->)
+  edge("u", u, "-->")
+$))
+Let $arr(x,1,X)$, thus we can construct
+$
+{u comp x} &iso {pi_N comp u comp x} times {pi_M comp u comp x} \
+Hom(Mon, s: 1, t: N times M) &iso Hom(Mon, s: 1, t: N) times Hom(Mon, s: 1, t: M) \
+U(N times M) &iso U(N) times U(M)
+$
+Thus $U$ preserves products
