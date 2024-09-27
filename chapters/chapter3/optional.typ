@@ -4,13 +4,140 @@
 
 #exercise("1")[In any category $bold(C)$, show that ... is a coproduct diagram just if for...]
 
+For products we have the following as given
+$
+"UMP"(c_1^(-1) comp f^(-1), c_2^(-1) comp f^(-1)) &= f^(-1) \
+Hom(op(bold(C)),s:Z,t:C) &iso Hom(op(bold(C)),s:C,t:A) times Hom(op(bold(C)),s:C,t:B) \
+f^(-1) &iso (c_1^(-1) comp f^(-1), c_2^(-1) comp f^(-1))
+$
+taking its dual we derive
+$
+f &iso (f comp c_1, f comp c_2) \
+Hom(bold(C),s:C,t:Z) &iso Hom(bold(C),s:A,t:C) times Hom(bold(C),s:B,t:C)
+$
+
 #exercise("2")[Show in detail that the free monoid functor $M$ preserves coproducts for any sets $A,B$ ...]
+
+#figure(diagram(cell-size: 10mm, $
+& M(X) 
+  edge("dl", M(a), <-) 
+  edge("dr", M(b), <-) \
+M(A)
+  edge("d", 1_(M(A)), <-) &
+M(A + B)
+  edge("l", M(q_a), <-)
+  edge("r", M(q_b), <-)
+  edge("u", M(u), "-->")
+  edge("dl", M(q_a), <-)
+  edge("dr", M(q_b), <-)
+  edge("d", u', "<--")
+  &
+M(B) 
+  #edge("d", $1_(M(B))$, "->", label-anchor: "west", label-sep: 0em) \
+M(A) &
+M(A) + M(B) 
+  edge("l", <-) 
+  edge("r", <-) &
+M(B)
+$))
+$
+"UMP"(a,b) &= u \
+"UMP"(M(a), M(b)) &= M(u) \
+"UMP"(M(a), M(b)) &= M(u) comp u' \
+$
+by uniqueness property of UMP
+$
+M(u) &= u' comp M(u) \
+1_(M(A+B)) &= u' \
+M(A+B) &= M(A) + M(B)
+$
 
 #exercise("3")[Verify that the construction given in the text of the coproduct of monoids $A+B$ as a quotient of the free monoid $M(|A|+|B|)$ really is a coproduct in the category of monoids.]
 
+#figure(diagram(cell-size: 10mm, $
+& X 
+  edge("d", u, "<--") 
+  edge("dl", a, <-)
+  edge("dr", b, <-) \
+A 
+  edge("d", 1_A, <-) &
+A + B 
+  edge("l", q_a, <-)
+  edge("r", q_b, <-) 
+  edge("d", 1_(A+B), "<--") &
+B 
+  edge("d", 1_B, <-) \
+M(|A|) 
+  edge("d", 1_A, <-) &
+M(|A + B|) 
+  edge("d", u', "<--")
+  edge("l", q_a, <-)
+  edge("r", q_b, <-) &
+M(|B|) 
+  edge("d", 1_B, <-) \
+M(|A|) &
+M(|A| + |B|) 
+  edge("l", q_a', <-)
+  edge("r", q_b', <-)
+  &
+M(|B|) \
+|A| &
+|A| + |B|
+  edge("l", |q_a'|, <-)
+  edge("r", |q_b'|, <-) &
+|B| 
+// & |X|
+//   edge("u", |u' comp 1_(A+B) comp u|, "-->")
+//   edge("ul", ->)
+//   edge("ur", ->)
+// S_A 
+//   edge("u", i_A, "hook->") &
+// S_A + S_B 
+//   edge("l", q_a, ->)
+//   edge("r", q_b, ->)
+//   edge("u", i_(A+B), "hook->") &
+// S_B
+//   edge("u", i_B, "hook->")
+$))
+we know $A = M(|A|)$, thus $A+B = M(|A+B|)$, thus
+$
+"UMP"(a,b) &= u \
+"UMP"(a,b) &= u comp 1_(A+B) \
+"UMP"(a,b) &= u comp 1_(A+B) comp u'
+$
+by uniqueness property of UMP $u' = 1_(A+B)$ thus $M(|A + B|) = M(|A| + |B|)$, maybe??
+
 #exercise("4")[Show that the product of two powerset boolean algebras $cal(P)(A)$ and $cal(P)(B)$ is also a powerset, ...]
 
+#figure(diagram(cell-size: 10mm, $
+& X
+  edge("dl", a, ->)
+  edge("dr", b, ->)
+  edge("d", u, "-->") \
+cal(P)(A) 
+  edge("r", pi_1, <-) &
+cal(P)(A + B) &
+cal(P)(B)
+  edge("l", pi_2, <-)
+$))
+
+$
+pi_1 &= [ S |-> {a | a in S and a in A}] \
+pi_2 &= [ S |-> {b | b in S and b in B}] \
+a &= [ x |-> {a | a in u(x) and a in A}] \
+&= [S |-> {a | a in S and a in A}] comp [x |-> u(x)]\
+&= pi_1 comp u \
+b &= pi_2 comp u \
+"UMP"(a,b) &= u
+$
+
 #exercise("6")[Verify that the category of monoids has all equalizers and finite products.]
+
+In the category of monoids, morphisms are monoid homomorphisms.
+
+Show that these are equalizers.
+
+For any two monoids / objects, show that a product must exist.
 
 #exercise("10")[In the proof of proposition 3.24 in the text iti s shown that any monoid $M$ has a specific presentation ...]
 
