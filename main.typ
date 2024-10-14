@@ -1,4 +1,5 @@
 #import "preamble/style.typ"
+#import "preamble/lemmas.typ": *
 
 #show: style.setup.with(
   "Category Theory",
