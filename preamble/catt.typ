@@ -1,3 +1,5 @@
+#import "@preview/xarrow:0.3.0": xarrow
+
 #let Ob(category) = $attach(br: category, upright(bold("Ob")))$
 #let Hom(category, s: none, t: none) = (
   $attach(br: category, upright(bold("Hom")))#if s != none and t != none { $(#s,#t)$ }$
@@ -13,9 +15,11 @@
 #let Set = $upright(bold("Sets"))$
 #let Rel = $upright(bold("Rel"))$
 #let Mon = $upright(bold("Mon"))$
+#let Cone = $upright(bold("Cone"))$
 #let Pos = $upright(bold("Posets"))$
 #let dom = $upright(bold("dom"))$
 #let cod = $upright(bold("cod"))$
+#let lim(j) = $upright(attach(limits(bold("lim")), b: attach(limits(<--), b: #j)))$
 
 // diagram macros
 #let sstroke = 1pt + silver

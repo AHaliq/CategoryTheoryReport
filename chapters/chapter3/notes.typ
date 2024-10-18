@@ -81,7 +81,6 @@
   columns: (1fr, 1fr),
   align: (left + horizon, left + horizon),
   definition(name: "Equalizers")[@sa[Definition 3.13, 3.16] $"UMP"(f,g,z) = u$, notice $e$ is monic by uniqueness of $u$
-
     #figure(
       diagram(
         cell-size: 10mm,
