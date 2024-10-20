@@ -1,4 +1,5 @@
 #import "@preview/xarrow:0.3.0": xarrow
+#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge
 
 #let Ob(category) = $attach(br: category, upright(bold("Ob")))$
 #let Hom(category, s: none, t: none) = (
