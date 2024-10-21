@@ -85,40 +85,136 @@ $))
 
 #exercise("3")[A regular monomorphism is an arrow $mono(e,E,A)$ which is an equalizer of some pair of arrows $f,g: A -> B$. Recall that by Proposition 3.16 of SA $e$ is in particular a monomorphism. Show that in a pullback square below, if $e$ is a regular monomorphism then so is $e'$ for any object $C$ and any arrow $h$. This property is often called "regular monos are stable under pullback".]
 
-#figure(diagram(cell-size: 5mm,
+#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 1em, 
+figure(diagram(cell-size: 5mm,
 $
 E'
   #corner("dr")
   edge("r", ->)
   edge("d",  e', ->) &
 E
-  edge("d", e, ->) \
+  edge("d", e, >->) \
 C
   edge("r", h, ->) &
 A
-$))
-
-1. Let $u = angle.l arr(f,X,E), arr(g,X,C) angle.r$ be the pullback
-2. since $e$ is mono, $g$ is unique
-3. since $u$ and $g$ are unique, $f$ is unique
-4. since $f$ and $u$ are unique, $e'$ is unique
-5. thus any precomposition of $e'$ from the same object is unique too
-4. by pullback $g comp e = h comp e' comp u$, since $g,u$ are unique, for specific $e,e'$, then $h$ is unique
-
-not sure
+$)),
+[
+  1. we have the following pullback with $e$ as a regular monomorphism
+],
+figure(diagram(cell-size: 5mm,
+$
+E'
+  #corner("dr")
+  edge("r", ->)
+  edge("d",  e', ->) &
+E
+  edge("d", e, >->) \
+C
+  edge("r", h, ->) &
+A
+  #edge("r", $f$, "->", shift: 3pt) 
+  #edge("r", $g$, "->", shift: -3pt, label-anchor: "north", label-sep: 0em) &
+B
+$)),
+[
+  2. $e$ is an equalizer of $f,g$ by definition of regular mono
+  3. thus $f comp h comp e' = g comp h comp e'$ satisfiies existence equalizer UMP
+],
+figure(diagram(cell-size: 5mm,
+$
+X
+  #edge("rr", "->", bend: 30deg) 
+  #edge("dr", $x_C$, "->", bend: -30deg)
+  edge("r", u, "-->") &
+E'
+  #corner("dr")
+  edge("r", ->)
+  edge("d",  e', >->) &
+E
+  edge("d", e, >->) \
+& C
+  edge("r", h, ->) &
+A
+  #edge("r", $f$, "->", shift: 3pt) 
+  #edge("r", $g$, "->", shift: -3pt, label-anchor: "north", label-sep: 0em) &
+B
+$)),
+[
+  4. let $arr(u,X,E')$ be a pullback for any $X$
+  5. thus $u comp e' = x_C$ satisfies uniqueness equalizer UMP
+  6. thus by (3) and (5) $e'$ is an equalizer
+  7. $u$ is unique by pullback UMP
+  8. thus $e'$ is a monomorphism
+  8. therefore $e'$ is a regular monomorphism
+],
+))
 
 #exercise("4")[Let $mono(e,A,B)$ be a regular monomorphism. Show that if the square is a pushout then $e$ is the equalizer of $x$ and $y$]
 
-by pushout $"UMP"(e,e) = u$
 
+#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 1em, 
+figure(diagram(cell-size: 5mm,
 $
-u comp x comp e &= u comp y comp e \
-x comp e &= y comp e
+A
+  edge("r", e, >->)
+  edge("d", e, >->) &
+B
+  edge("d", y, >->) \
+B
+  edge("r", x, ->) &
+Q
+  #corner("ul")
+$)),
+[
+  1. we have the following pushout with $e$ as a regular monomorphism
+],
+figure(diagram(cell-size: 5mm,
 $
-
-by equalizer $"UMP"(x,y,z) = arr(u',Z,A)$
-
-not sure
+A
+  edge("r", e, >->)
+  edge("d", e, >->) &
+B
+  edge("d", y, >->)
+  edge("dr", x_B, ->) \
+B
+  edge("r", x, ->)
+  #edge("rr", $x_B$, "->", bend: -30deg) &
+Q
+  #corner("ul")
+  edge("r", u, "-->") &
+X
+$)),
+[
+  2. let $arr(u,Q,X)$ be a pushout for any $X$
+  3. thus $e comp x comp u = e comp y comp u$
+  4. thus $e comp x = e comp y => x = y$, satisfies the existence equalizer UMP
+],
+figure(diagram(cell-size: 5mm,
+$
+Y
+  edge("r", v, "-->")
+  #edge("dr",  $y_B$, "->", label-anchor: "north", label-sep: 0em)
+  #edge("rr", $y_B$, "->", bend: 30deg) &
+A
+  edge("r", e, >->)
+  edge("d", e, >->) &
+B
+  edge("d", y, >->)
+  edge("dr", x_B, ->) \
+& B
+  edge("r", x, ->)
+  #edge("rr", $x_B$, "->", bend: -30deg) &
+Q
+  #corner("ul")
+  edge("r", u, "-->") &
+X
+$)),
+[
+  5. for any $Y$, $arr(v,Y,A)$ must be unique by $e$ being a mono
+  6. thus $v comp e = y_B$, satisfies the uniqueness equalizer UMP
+  7. therefore by (4) and (6) $e$ is the equalizer of $x$ and $y$
+],
+))
 
 #exercise("5")[Let $arr(F, bb(C), bb(D))$ be a finite limit preserving functor. Show that for any monomorphism $mono(m,A,B)$ the morphism $arr(F(m), F(A), F(B))$ is also a monomorphism, i.e. F preserves monomorphisms. Dualizing, show that if $arr(F,bb(C),bb(D))$ preserves finite colimits then it preserves epimorphisms.]
 

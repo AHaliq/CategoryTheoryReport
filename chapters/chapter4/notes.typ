@@ -43,14 +43,14 @@
           Y \
           M
             edge("u", f, "-->")
-            edge("ur", m, ->)
+            edge("ur", m, >->)
           $,
         ),
       ),
     ),
   )
   - since equalizers are monos they are subobjects too $m in_X M' <=> g(m) = g(h)$
-    - we can then regard $M'$ as the subobject of generalized elements $m$ such that $f(m) = g(m)$
+    - we can then regard $M'$ as the subobject of generalized elements $m$ such that $g(m) = h(m)$
 ]<defn-subobject>
 
 #definition(name: "Pullbacks")[@sa[Definition 5.4, Proposition 5.5, Corollary 5.6]
