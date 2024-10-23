@@ -24,6 +24,9 @@
 
 #definition(name: "Coproducts")[@sa[Definition 3.3]
 
+  $
+    "UMP"_"coproduct" (x_1,x_2,u,q_1,q_2) = forall x_1, x_2. exists! u. x_1 = u comp q_1 and x_2 = u comp q_2
+  $
   #figure(
     diagram(
       cell-size: 10mm,
@@ -38,17 +41,6 @@
   edge("r", q_2, <-) &
 #node($B$, name: <B>)
       $,
-    ),
-  )
-
-  #figure(
-    table(
-      columns: 3,
-      align: (right, left, left),
-      [UMP], [existence], [uniqueness],
-      [coproduct],
-      $forall x_1,x_2. exists! u.x_1 = u comp q_1 and x_2 = u comp q_2$,
-      $exists P,P'. P iso_(u,q_1,q_2) P'$,
     ),
   )
 
@@ -121,6 +113,10 @@ Q
     coequalizers as quotients as two incoming morphisms $f,g$ are coequalized to one $q$
   ],
 )
+$
+  "UMP"_"equalizer" (e,f,g) = forall z. exists! u. f comp z = g comp z => e comp u = z \
+  "UMP"_"coequalizer" (q,f,g) = forall z. exists! u. z comp f = z comp g => u comp q = z
+$
 #figure(
   table(
     columns: 3,
@@ -129,7 +125,7 @@ Q
     [equalizer], $forall f, g. exists e. f comp e = g comp e$, $forall z. exists! u. e comp u = z$,
     [coequalizer], $forall f, g. exists q. q comp f = q comp g$, $forall z. exists! u. u comp q = z$,
   ),
-)
+)<defn-co-equalizer>
 
 #definition(name: "Presentation of Algebras")[@sa[Definition 3.24]
   - Given a finite set, let it be the *generators* of the *free algebra*

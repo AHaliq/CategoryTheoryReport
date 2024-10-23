@@ -85,69 +85,131 @@ $))
 
 #exercise("3")[A regular monomorphism is an arrow $mono(e,E,A)$ which is an equalizer of some pair of arrows $f,g: A -> B$. Recall that by Proposition 3.16 of SA $e$ is in particular a monomorphism. Show that in a pullback square below, if $e$ is a regular monomorphism then so is $e'$ for any object $C$ and any arrow $h$. This property is often called "regular monos are stable under pullback".]
 
-#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 1em, 
+#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 2em, 
 figure(diagram(cell-size: 5mm,
 $
 E'
   #corner("dr")
-  edge("r", ->)
+  edge("r", h', ->)
   edge("d",  e', ->) &
 E
-  edge("d", e, >->) \
+  edge("d", e, ->) \
 C
   edge("r", h, ->) &
 A
 $)),
 [
-  1. we have the following pullback with $e$ as a regular monomorphism
+  Given
+  1. $C <-^e' E' ->^h' E$ are a pullback of $C ->^h A <-^e E$
+  2. $arr(e,E,A)$ is a regular monomorphism
 ],
-figure(diagram(cell-size: 5mm,
-$
-E'
-  #corner("dr")
-  edge("r", ->)
-  edge("d",  e', ->) &
-E
-  edge("d", e, >->) \
-C
-  edge("r", h, ->) &
-A
-  #edge("r", $f$, "->", shift: 3pt) 
-  #edge("r", $g$, "->", shift: -3pt, label-anchor: "north", label-sep: 0em) &
-B
-$)),
-[
-  2. $e$ is an equalizer of $f,g$ by definition of regular mono
-  3. thus $f comp h comp e' = g comp h comp e'$ satisfiies existence equalizer UMP
-],
+grid.cell(colspan: 2, align: left, [
+  We prove that $e'$ is a regular monomorphism by showing
+  - $e'$ is a monomorphism by (4)
+  - $e'$ is an equalizer for any $C$ and $h$ by (5) and (6)
+])))
+#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 2em,
 figure(diagram(cell-size: 5mm,
 $
 X
-  #edge("rr", "->", bend: 30deg) 
-  #edge("dr", $x_C$, "->", bend: -30deg)
+  #edge("rr", $f$, "->", bend: 30deg) 
+  #edge("dr", $g$, "->", bend: -30deg)
   edge("r", u, "-->") &
 E'
   #corner("dr")
-  edge("r", ->)
+  edge("r", h', ->)
+  edge("d",  e', ->) &
+E
+  edge("d", e, >->) \
+& C
+  edge("r", h, ->) &
+A
+$)),
+[
+  3. Given by (1) and @defn-pullback, for any $X$
+    1. $(h comp e' = e comp h') and $
+    2. $forall X, (arr(f,X,E)), (arr(g,X,C)), exists! (arr(u,X,E')).$
+    3. $#h(1em) (e' comp u = g) and$
+    4. $#h(1em) (h' comp u = f)$
+],
+grid.cell(colspan: 2, align: left, [
+  *Explanation*: Given the pullback, for any $X$ and morphisms $arr(f,X,E),arr(g,X,C)$, there exists a unique $u$ such that the square commutes even with $u$ precomposed and that the triangles $X,E',C$ and $X,E',E$ commutes as well.
+])))
+#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 1em,
+figure(diagram(cell-size: 5mm,
+$
+X
+  #edge("r", $u_1$, "->", shift: 3pt) 
+  #edge("r", $u_2$, "->", shift: -3pt, label-anchor: "north", label-sep: 0em) &
+E'
+  #corner("dr")
+  edge("r", h', ->)
   edge("d",  e', >->) &
 E
   edge("d", e, >->) \
 & C
   edge("r", h, ->) &
 A
-  #edge("r", $f$, "->", shift: 3pt) 
-  #edge("r", $g$, "->", shift: -3pt, label-anchor: "north", label-sep: 0em) &
-B
 $)),
 [
-  4. let $arr(u,X,E')$ be a pullback for any $X$
-  5. thus $u comp e' = x_C$ satisfies uniqueness equalizer UMP
-  6. thus by (3) and (5) $e'$ is an equalizer
-  7. $u$ is unique by pullback UMP
-  8. thus $e'$ is a monomorphism
-  8. therefore $e'$ is a regular monomorphism
+  Let $forall (u_1, u_2 : X -> E').$ be the scope of the following formulas
+  4. By (3.1) where $h comp e' = e comp h'$ we know the following
+  $#h(1em) ((e comp h') comp u_1 = (h comp e') comp u_1) and ((e comp h') comp u_2 = (h comp e') comp u_2)$
+  5. Supposing $e' comp u_1 = e' comp u_2$ we derive from (4) that
+  $#h(1em) e' comp u_1 = e' comp u_2 =>\
+  #h(1em) e comp h' comp u_1 = h comp e' comp u_1 = h comp e' comp u_2 = e comp h' comp u_2$
+  6. Given (2) where $e$ is a monomorphism we know
+  $#h(1em) e comp h' comp u_1 = e comp h' comp u_2 => h' comp u_1 = h' comp u_2$
+  7. The consequent of (5) satisfies the antecedent of (6), thus by transitivity we have
+  $#h(1em) e' comp u_1 = e' comp u_2 => h' comp u_1 = h' comp u_2$
+  8. Given (1) and (3), there must exist a unique $v:X -> E'$, since both $u_1, u_2$ satisfies $v$, they must be equal
+  $#h(1em) h' comp u_1 = h' comp v and e' comp u_1 = e' comp v and \
+  #h(1em) h' comp u_2 = h' comp v and e' comp u_2 = e' comp v =>
+  u_1 = u_2$
+  9. (7) satisfies the antecedent of (8), thus by transitivity we have that $e'$ is a monomorphism
+  $#h(1em) e' comp u_1 = e' comp u_2 => u_1 = u_2$
+
 ],
+grid.cell(colspan: 2, align: left, [
+*Explanation*: The square commutes (4), additionally with $e' comp u_1 = e' comp u_2$ as the premise for $e'$ to be a monomorphism, we have that $e comp h' comp u_1 = e comp h' comp u_2$ in (5). This satisfies the premise for $e$ to be a monomorphism in (6). Thus we get the consequent $h' comp u_1 = h' comp u_2$ in (7). Moreover, since morphisms $X -> E'$ have to be unique by UMP of the pullback, they must be equal (8). Therefore $e'$ is a monomorphism (9).
+])))
+#figure(grid(columns: (auto, 1fr), align: (center + horizon, horizon + left), gutter: 1em,
+figure(diagram(cell-size: 5mm,
+$
+X
+  #edge("dr", $x_C$, "->")
+  edge("r", u, "-->") &
+E'
+  #corner("dr")
+  edge("r", h', ->)
+  edge("d",  e', >->) &
+E
+  edge("d", e, >->) \
+& C
+  edge("r", h, ->) &
+A
+  #edge("d", $a$, "->", shift: 3pt, label-anchor: "west", label-sep: 0em) 
+  #edge("d", $a'$, "->", shift: -3pt, label-anchor: "east", label-sep: 0em) \
+& & B
+$)),
+[
+  Let $forall (a,a': A -> B).$ be the scope of the following formulas
+  10. By (2) where $e$ is an equalizer
+  $#h(1em) a comp e = a' comp e$
+  11. By (3.1); $h comp e' = e comp h'$, and (10), $e'$ equalizes $a comp h$ and $a' comp h$
+  $#h(1em) (a comp e) comp h' = (a' comp e) comp h' = \
+  #h(1em) (a comp h) comp e' = (a' comp h) comp e'$
+  12. Given (1) and (3), there must exist a unique $arr(u,X,E')$ for any $X$ and $arr(x_C,X,C)$ such that $e' comp u = x_C$ in (3.3).
+  $#h(1em) a comp h comp e' comp u = a comp h comp x_C  and\
+  #h(1em) a' comp h comp e' comp u = a' comp h comp x_C$
+  13. Since $e'$ is universal (12), equalizes on $h$ (11) and is a monomorphism (9), $e'$ must be a regular monomorphism.
+],
+grid.cell(colspan: 2, align: left, [
+*Explanation*: It is given $e$ is an equalizer for $a,a'$ in (10) if we precompose it by $h'$ in (11) it will still hold. Since the square commutes the identity holds for $a,a'$ composed with $h comp e'$ as well. Moreover $e'$ is universal by the the uniqueness of $u$ induced by the pullback. Therefore $e'$ is an equalizer for $h comp a$ and $h comp a'$. Making it both a monomorphism and an equalizer and thus a regular monomorphism $square.filled$ 
+]),
 ))
+
+#pagebreak()
 
 #exercise("4")[Let $mono(e,A,B)$ be a regular monomorphism. Show that if the square is a pushout then $e$ is the equalizer of $x$ and $y$]
 

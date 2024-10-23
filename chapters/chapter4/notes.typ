@@ -63,9 +63,9 @@
           cell-size: 5mm,
           $
             Z
-          edge("dddr", z_1, ->)
+          edge("dddr", p_1, ->)
           #edge("dr", $u$, "-->")
-          edge("drrr", z_2, ->) \
+          edge("drrr", p_2, ->) \
         & P
           edge("rr", pi_2, ->)
           edge("dd", pi_1, ->) &&
@@ -78,18 +78,18 @@
         ),
       ),
       [
-        - a pullback is a $"UMP"(f,g)=angle.l p_1,p_2 angle.r = u$
-          - $P = A times_C B = {angle.l z_1,z_2 angle.r in A times B | f comp z_1 = g comp z_2}$
+        - a pullback is a $"UMP"(f,g)=(pi_1,pi_2)$
+          - $P = A times_C B = {angle.l p_1,p_2 angle.r in A times B | f comp z_1 = g comp z_2}$
+          - making $u$ an equalizer of $f comp pi_1$ and $g comp pi_2$
           - $P$ is a subobject of $Z$ that makes it commute in the square
-          - or determined as an equalizer of $f comp pi_1$ and $g comp pi_2$
           - if $pi_1$ is monic, $g$ is monic too
         #figure(
           table(
             columns: 2,
             align: (right, left),
             [UMP], [definition],
-            [existence], $forall f, g. exists! u. f comp pi_1 comp u = g comp pi_2 comp u$,
-            [uniqueness], $pi_1 comp u = pi_1' comp u' = z_1$,
+            [existence], $forall p_1, p_2. exists! u. f comp pi_1 comp u = g comp pi_2 comp u$,
+            [uniqueness], $pi_1 comp u = p_1 and pi_1 comp u' = z_1 => u = u'$,
           ),
         )
       ],

@@ -73,20 +73,10 @@
   @sa[definition 2.9, 2.10]
   a category is initial / terminal if it has initial / terminal objects $0$ / $1$
 
-  #figure(
-    table(
-      columns: 3,
-      align: (right, left, left),
-      [UMP], [existence], [uniqueness],
-      [initial],
-      $forall X. exists! 0. arr(0_X,0,X)$,
-      $exists 0,0'. "isIso"(0,0')$,
-
-      [terminal],
-      $forall X. exists!1. arr(1_X,X,1)$,
-      $exists 1,1'. "isIso"(1,1')$,
-    ),
-  )
+  $
+    "UMP"_"terminal" (0) = forall X. exists! 0. 0_X in Hom("",s:0,t:X) \
+    "UMP"_"initial" (1) = forall X. exists! 1. 1_X in Hom("",s:X,t:1)
+  $
 
   - $op(0) = 1$, initial and terminal objects are duals
   - $op(mono(f,A,B)) = epi(f',B,A)$, monomorphisms and epimorphisms are duals
@@ -104,6 +94,9 @@
 
 #definition(name: "Products")[
   @sa[definition 2.15] $P$ is a product of $A$ and $B$ under $p_1,p_2$ if there exists a unique $u$; $P,A,B,p_1,p_2$ is called a diagram of the limit. $"UMP"(x_1,x_2) = u$
+  $
+    "UMP"_"product" (x_1,x_2,u,p_1,p_2) = forall x_1, x_2. exists! u. x_1 = p_1 comp u and x_2 = p_2 comp u
+  $
   #figure(
     diagram(
       cell-size: 10mm,
@@ -118,16 +111,6 @@
   edge("r", p_2, ->) &
 #node($B$, name: <B>)
       $,
-    ),
-  )
-  #figure(
-    table(
-      columns: 3,
-      align: (right, left, left),
-      [UMP], [existence], [uniqueness],
-      [product],
-      $forall x_1,x_2. exists! u.x_1 = p_1 comp u and x_2 = p_2 comp u$,
-      $exists P,P'. P iso_(u,p_1,p_2) P'$,
     ),
   )
   note that there can be more than one product of $A,B$ i.e. $p_1',p_2'$ can be distinct from $p_1,p_2$
