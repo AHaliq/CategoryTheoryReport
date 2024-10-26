@@ -209,6 +209,24 @@ grid.cell(colspan: 2, align: left, [
 ]),
 ))
 
+second attempt:
+$
+&"UMP"_"pullback" (e',h',h,e) and "UMP"_"equalizer" (e,a,a') and "isMono"(e) \
+=& ((h e' = e h') and (forall f,g. exists! u. f = e' u and g = h' u)) and \
+&(forall v_1. a v_1 = a' v_1 and exists! u_1. e u_1 = v_1) and \
+&(forall v_2, v_3. e v_2 = e v_3 => v_2 = v_3) \ \
+&"let " v_1 = h f, u_1 = h' u, v_2 = h' u_1, v_3 = h' u_2 \ \
+=& (h e' = e h') and (forall f,g. exists! u. (f = e' u and g = h' u) and \
+&(a (h f) = a' (h f) and e (h' u) = (h f)) and \
+&(forall u_1, u_2. e h' u_1 = e h' u_2 => h' u_1 = h' u_2)) \
+
+
+=& ... \
+=& (forall f. h a f = h a' f and exists! u. e' u = f) and \
+& (forall u_1, u_2. e' u_1 = e' u_2 => u_1 = u_2) and ... \
+=& "UMP"_"equalizer" (e',h comp a, h comp a') and "isMono"(e') and ... \
+$
+
 #pagebreak()
 
 #exercise("4")[Let $mono(e,A,B)$ be a regular monomorphism. Show that if the square is a pushout then $e$ is the equalizer of $x$ and $y$]
