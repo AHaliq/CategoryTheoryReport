@@ -12,10 +12,10 @@
 
 // ------------------------------------------------------------
 
-#include "chapters/chapter1/index.typ"
-#include "chapters/chapter2/index.typ"
-#include "chapters/chapter3/index.typ"
-#include "chapters/chapter4/index.typ"
-#include "chapters/chapter5/index.typ"
+// #include "chapters/chapter1/index.typ"
+// #include "chapters/chapter2/index.typ"
+// #include "chapters/chapter3/index.typ"
+// #include "chapters/chapter4/index.typ"
+// #include "chapters/chapter5/index.typ"
 
-#include "chapters/appendix.typ"
+#include "chapters/version2/index.typ"
